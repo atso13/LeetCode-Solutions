@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LeetCode167_TwoSum_II
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Solution sol = new Solution();
+            int[] numbers = { 2, 7, 11, 15 };
+            int[] result = sol.TwoSum(numbers, 9);
+            Console.WriteLine("Index 1: " + result[0] + ", Index 2: " + result[1]);
+        }
+    }
+    public class Solution
+    {
+        public int[] TwoSum(int[] numbers, int target)
+        {
+            int[] result = new int[2];
+            int left = 0;
+            int right = numbers.Length - 1;
+            while (left <= right)
+            {
+                if (numbers[left] + numbers[right] == target)
+                {
+                    result[0] = left + 1;
+                    result[1] = right + 1;
+                    return result;
+                }
+                else if (numbers[left] + numbers[right] > target)
+                    right--;
+
+                else
+                    left++;
+
+            }
+            return result;
+        }
+    }
+}
