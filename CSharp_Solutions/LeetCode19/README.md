@@ -1,1 +1,27 @@
-💡 Approach: Two-Pointer Technique (One Pass)To solve this problem in a single pass with $O(n)$ time complexity, I used the Two-Pointer (Gap) strategy:Create a Gap: I initialized two pointers, temp and renode, both pointing to the head. First, I moved the temp pointer $n$ steps forward.Edge Case (Removing Head): If temp becomes null after $n$ steps, it means $n$ is equal to the length of the list. In this case, the node to remove is the head, so I simply return head.GetNext().Simultaneous Movement: I then move both pointers forward one step at a time until temp reaches the last node (temp.HasNext() == false).Deletion: At this point, renode is positioned exactly one node before the target node. I update its pointer to skip the next node: renode.SetNext(renode.GetNext().GetNext()).🚀 Complexity AnalysisTime Complexity: $O(L)$ where $L$ is the length of the linked list. We traverse the list only once.Space Complexity: $O(1)$ as we only use two constant pointers, regardless of the list size.
+# LeetCode 19: Remove Nth Node From End of List
+
+## 📝 Description
+Given the `head` of a linked list, remove the $n^{th}$ node from the end of the list and return its head.
+
+**Constraints:**
+* The number of nodes in the list is `sz`.
+* $1 \leq sz \leq 30$
+* $0 \leq Node.val \leq 100$
+* $1 \leq n \leq sz$
+
+---
+
+## 💡 Solution: Two-Pointer Technique (One Pass)
+The most efficient way to solve this problem is by using two pointers to maintain a constant "gap" of $n$ nodes between them. This allows us to find the target node in a single traversal ($O(n)$).
+
+### The Logic:
+1.  **Initialize:** Both `temp` (fast) and `renode` (slow) pointers start at the `head`.
+2.  **Create the Gap:** Move the `temp` pointer $n$ steps forward.
+3.  **Handle Edge Case:** If `temp` is `null` after the move, it means we need to remove the **first node** (the head). In this case, we simply return `head.GetNext()`.
+4.  **Sync Movement:** Move both pointers forward until `temp` reaches the last node (`temp.GetNext() == null`).
+5.  **Delete Node:** Now, `renode` is standing exactly **one node before** the one we want to remove. We skip the target node by updating the reference: `renode.SetNext(renode.GetNext().GetNext())`.
+
+---
+
+## 🛠️ Implementation (C#)
+
